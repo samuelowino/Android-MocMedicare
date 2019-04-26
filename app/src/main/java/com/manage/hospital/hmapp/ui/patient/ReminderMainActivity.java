@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.canelmas.let.Let;
 import com.manage.hospital.hmapp.R;
 import com.manage.hospital.hmapp.adapter.MainFragmentPagerAdapter;
 
@@ -111,7 +110,7 @@ public class ReminderMainActivity extends AppCompatActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Let.handle(this, requestCode, permissions, grantResults);
+        //Let.handle(this, requestCode, permissions, grantResults);
     }
 
 

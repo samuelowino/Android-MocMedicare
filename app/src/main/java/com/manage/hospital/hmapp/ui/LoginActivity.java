@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.manage.hospital.hmapp.R;
 import com.manage.hospital.hmapp.data.LoginInfo;
@@ -37,8 +39,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class LoginActivity extends Activity
-{
+
+public class LoginActivity extends Activity {
 
     EditText txtUsername, txtPassword;
 
@@ -46,10 +48,11 @@ public class LoginActivity extends Activity
     AlertDialogManager alert = new AlertDialogManager();
     SessionManager session;
 
+    ProgressBar loginProgressBar;
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         System.out.println("Inside login activity");
@@ -62,7 +65,16 @@ public class LoginActivity extends Activity
         RadioButton rd1 = (RadioButton) findViewById(R.id.doc_rd);
         RadioButton rd2 = (RadioButton) findViewById(R.id.patient_rd);
 
+        loginProgressBar = (ProgressBar)findViewById(R.id.login_progress_bar);
+
         //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.login_toolbar);
+        setActionBar(toolbar);
+
+        if (getActionBar() != null){
+            getActionBar().setTitle(getResources().getString(R.string.app_name));
+        }
 
         btnLogin = (Button) findViewById(R.id.login);
 
@@ -72,6 +84,9 @@ public class LoginActivity extends Activity
             @Override
             public void onClick(View arg0) {
 
+                loginProgressBar.setVisibility(View.VISIBLE);
+                txtPassword.setEnabled(false);
+                txtUsername.setEnabled(false);
 
                 String username = txtUsername.getText().toString();
                 String password = txtPassword.getText().toString();
@@ -80,20 +95,16 @@ public class LoginActivity extends Activity
                 RadioButton rd2 = (RadioButton) findViewById(R.id.patient_rd);
 
 
-                LoginInfo L = new LoginInfo();
+                LoginInfo loginInfo = new LoginInfo();
 
-                if (username.trim().length() > 0 && password.trim().length() > 0)
-                {
-                    L.setUsername(username);
-                    L.setPassword(password);
+                if (username.trim().length() > 0 && password.trim().length() > 0) {
+                    loginInfo.setUsername(username);
+                    loginInfo.setPassword(password);
                     if (rd1.isChecked())
-                        new AsyncTaskLoginDoc().execute(L);
+                        new AsyncTaskLoginDoc().execute(loginInfo);
                     else
-                        new AsyncTaskLoginPatient().execute(L);
-                }
-
-                else
-                {
+                        new AsyncTaskLoginPatient().execute(loginInfo);
+                } else {
 
                     alert.showAlertDialog(LoginActivity.this, "Login failed..", "Please enter username and password", false);
                 }
@@ -111,80 +122,67 @@ public class LoginActivity extends Activity
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            Toast.makeText(getApplicationContext(),"Authenticating...",Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        protected LoginInfo doInBackground(LoginInfo... params)
-        {
+        protected LoginInfo doInBackground(LoginInfo... params) {
 
             String password = encryptPasscode.encryptPassword(params[0].Password);
 
-            try
-            {
+            try {
                 JSONObject requestBody = new JSONObject();
                 requestBody.put("username", params[0].Username);
-                requestBody.put("password",password); //ToDo hashcode of password
+                requestBody.put("password", password); //ToDo hashcode of password
                 String request = requestBody.toString();
                 StringEntity request_param = new StringEntity(request);
 
-                String Url= ConfigConstant.BASE_URL+ConfigConstant.authenticateDoctor;
+                String Url = ConfigConstant.BASE_URL + ConfigConstant.authenticateDoctor;
                 HttpPost post = new HttpPost(Url);
-                post.setHeader("Content-Type","application/json");
+                post.setHeader("Content-Type", "application/json");
                 post.setEntity(request_param);
                 HttpClient httpClient = new DefaultHttpClient();
                 response = httpClient.execute(post);
                 System.out.println("Reached after coming back from Backend API");
-                if (response.getStatusLine().getStatusCode() != 200)
-                {
-                    if(response.getStatusLine().getStatusCode() == 401)
-                    {
+                if (response.getStatusLine().getStatusCode() != 200) {
+                    if (response.getStatusLine().getStatusCode() == 401) {
                         System.out.println("Verification failed");
-                    }
-                    else if(response.getStatusLine().getStatusCode() == 400)
-                    {
+                    } else if (response.getStatusLine().getStatusCode() == 400) {
                         System.out.println("Verification failed");
-                    }
-                    else
-                      throw new RuntimeException("Failed: HTTP error code :" + response.getStatusLine().getStatusCode());
-                }
-                else
-                {
+                    } else
+                        throw new RuntimeException("Failed: HTTP error code :" + response.getStatusLine().getStatusCode());
+                } else {
                     HttpEntity e = response.getEntity();
                     String i = EntityUtils.toString(e);
                     JSONObject j = new JSONObject(i);
-                    if(!i.equals("Request Failed"))
-                    {
+                    if (!i.equals("Request Failed")) {
                         //int userID = Integer.parseInt(i);
                         int userID = j.getInt("Doctor ID");
                         params[0].setID(userID);
                     }
                 }
-            }
-            catch(Exception x)
-            {
-                throw new RuntimeException("Error from authenticate doc api",x);
+            } catch (Exception x) {
+                throw new RuntimeException("Error from authenticate doc api", x);
             }
             return params[0];
         }
 
         @Override
-        protected void onPostExecute(LoginInfo L)
-        {
+        protected void onPostExecute(LoginInfo L) {
             super.onPostExecute(L);
             String userID;
             userID = String.valueOf(L.ID);
-            if(L.ID != 0)
-            {
+            if (L.ID != 0) {
                 session = new SessionManager(getApplicationContext());
                 session.createLoginSession(L.Username, userID, "Doctor");
                 Intent i = new Intent(getApplicationContext(), LauncherActivity.class); //ToDo doctor dashboard
                 startActivity(i);
                 finish();
-            }
-            else
-            {
+            } else {
                 alert.showAlertDialog(LoginActivity.this, "Login failed..", "Username/Password is incorrect", false);
             }
+
+            loginProgressBar.setVisibility(View.GONE);
         }
 
     }
@@ -200,29 +198,27 @@ public class LoginActivity extends Activity
         }
 
         @Override
-        protected LoginInfo doInBackground(LoginInfo... params)
-        {
+        protected LoginInfo doInBackground(LoginInfo... params) {
 
-            LoginInfo loginInfo=params[0];
+            LoginInfo loginInfo = params[0];
 
             String password = encryptPasscode.encryptPassword(loginInfo.Password);
 
-            HttpURLConnection urlConnection=null;
-            BufferedReader reader=null;
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
 
             String responseJson;
-            try
-            {
+            try {
 
-                String baseUrl= ConfigConstant.BASE_URL;
+                String baseUrl = ConfigConstant.BASE_URL;
                 final String PATH_PARAM = ConfigConstant.authenticatePatient;
 
-                Uri loginUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
+                Uri loginUri = Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
 
-                URL url=new URL(loginUri.toString());
+                URL url = new URL(loginUri.toString());
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Content-Type","application/json");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setDoInput(true);
                 urlConnection.setDoOutput(true);
                 urlConnection.connect();
@@ -239,40 +235,39 @@ public class LoginActivity extends Activity
 
                     int HttpResult = urlConnection.getResponseCode();
                     if (HttpResult == HttpURLConnection.HTTP_OK) {
-                        InputStream inputStream=urlConnection.getInputStream();
-                        StringBuffer buffer=new StringBuffer();
-                        if(inputStream==null){
+                        InputStream inputStream = urlConnection.getInputStream();
+                        StringBuffer buffer = new StringBuffer();
+                        if (inputStream == null) {
                             return null;
                         }
 
-                        reader=new BufferedReader(new InputStreamReader(inputStream));
+                        reader = new BufferedReader(new InputStreamReader(inputStream));
 
                         String line;
 
-                        while((line=reader.readLine())!=null){
-                            buffer.append(line+"\n");
+                        while ((line = reader.readLine()) != null) {
+                            buffer.append(line + "\n");
                         }
-                        if(buffer.length()==0){
+                        if (buffer.length() == 0) {
                             return null;
                         }
-                        responseJson=buffer.toString();
+                        responseJson = buffer.toString();
 
-                        JSONObject jsonObject=new JSONObject(responseJson);
-                        int uid=jsonObject.getInt("Patient ID");
+                        JSONObject jsonObject = new JSONObject(responseJson);
+                        int uid = jsonObject.getInt("Patient ID");
                         loginInfo.setID(uid);
                     }
-                }catch (JSONException e){
-                    Log.e("Error",e.getMessage());
-                }
-                finally {
-                    if(urlConnection!=null){
+                } catch (JSONException e) {
+                    Log.e("Error", e.getMessage());
+                } finally {
+                    if (urlConnection != null) {
                         urlConnection.disconnect();
                     }
-                    if(reader!=null){
-                        try{
+                    if (reader != null) {
+                        try {
                             reader.close();
-                        }catch (final IOException e){
-                            Log.e("Error","Error closing stream",e);
+                        } catch (final IOException e) {
+                            Log.e("Error", "Error closing stream", e);
                         }
                     }
 
@@ -304,9 +299,9 @@ public class LoginActivity extends Activity
                         params[0].setID(userID);
                     }
                 }*/
-            } catch (IOException e){
+            } catch (IOException e) {
 
-                Log.e("Error",e.getMessage(),e);
+                Log.e("Error", e.getMessage(), e);
                 return null;
 
             }
@@ -314,35 +309,31 @@ public class LoginActivity extends Activity
         }
 
         @Override
-        protected void onPostExecute(LoginInfo L)
-        {
+        protected void onPostExecute(LoginInfo L) {
             super.onPostExecute(L);
             String userID;
             userID = String.valueOf(L.ID);
-            if(L.ID != 0)
-            {
+            if (L.ID != 0) {
                 session = new SessionManager(getApplicationContext());
-                session.createLoginSession(L.Username, userID,"Patient");
+                session.createLoginSession(L.Username, userID, "Patient");
                 Intent i = new Intent(getApplicationContext(), LauncherActivity.class); //ToDo Patient dashboard
                 startActivity(i);
                 finish();
-            }
-            else
-            {
+            } else {
                 alert.showAlertDialog(LoginActivity.this, "Login failed..", "Username/Password is incorrect", false);
             }
         }
 
     }
-    public void gotoHome(View V)
-    {
-        Intent intent = new Intent(LoginActivity.this,LauncherActivity.class);
+
+    public void gotoHome(View V) {
+        Intent intent = new Intent(LoginActivity.this, LauncherActivity.class);
         startActivity(intent);
     }
 
-    public void finishLoginActivity(View V)
-    {
-        LoginActivity.this.finish();;
+    public void finishLoginActivity(View V) {
+        LoginActivity.this.finish();
+        ;
     }
 
 }

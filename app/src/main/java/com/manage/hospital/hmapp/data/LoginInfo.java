@@ -1,8 +1,7 @@
 package com.manage.hospital.hmapp.data;
 
 
-public class LoginInfo
-{
+public class LoginInfo {
     public String Username,Password;
     public int ID = 0;
 

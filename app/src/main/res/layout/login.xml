@@ -1,92 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Toolbar
+        android:id="@+id/login_toolbar"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ToolbarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </Toolbar>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/login_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:text="Sign In"
-        android:layout_width="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:id="@+id/textView13"
+        android:text="@string/app_name"
         android:textSize="30dp"
-        android:layout_height="40dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+        android:layout_marginTop="56dp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="91dp"
-        android:id="@+id/uname_login"
-        android:hint="User Name"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/textView13"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+    <ImageView
+        android:id="@+id/application_logo_image_view"
+        android:src="@drawable/healthcare_bg"
+        android:layout_gravity="center"
+        android:layout_marginTop="21dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp" />
 
-    <RadioGroup
-        android:orientation="horizontal"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="200dp"
-        android:layout_below="@+id/textView13"
-        android:layout_alignEnd="@+id/uname_login"
-        android:layout_marginEnd="14dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RadioButton
-            android:text="Doctor"
+        <TextView
+            android:text="Daktari Online"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/doc_rd"
-            android:layout_weight="1"
-            android:checked="true" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView13"
+            android:textSize="30dp"
+            android:visibility="gone"
+            android:layout_marginBottom="32dp"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
 
-        <RadioButton
-            android:text="Patient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/patient_rd"
-            android:layout_weight="1"
-            android:checked="false" />
-    </RadioGroup>
+        <EditText
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_marginTop="91dp"
+            android:id="@+id/uname_login"
+            android:hint="User Name"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/textView13"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
 
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="15dp"
-        android:id="@+id/password_login"
-        android:hint="Password"
-        android:layout_below="@+id/uname_login"
-        android:layout_alignStart="@+id/uname_login"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="200dp"
+            android:layout_below="@+id/textView13"
+            android:layout_alignEnd="@+id/uname_login"
+            android:layout_marginEnd="14dp">
 
-    <Button
-        android:text="LOGIN"
-        android:layout_height="40dp"
-        android:id="@+id/login"
-        android:layout_width="250dp"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/password_login"
-        android:layout_alignStart="@+id/password_login"
-        android:textColor="@color/white"
-        android:background="@color/colorPrimary" />
+            <RadioButton
+                android:text="Doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/doc_rd"
+                android:layout_weight="1"
+                android:checked="true" />
 
-    <Button
-        android:text="CANCEL"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:id="@+id/button8"
-        android:onClick="finishLoginActivity"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:layout_below="@+id/login"
-        android:layout_alignStart="@+id/login"
-        android:layout_marginTop="10dp" />
+            <RadioButton
+                android:text="Patient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/patient_rd"
+                android:layout_weight="1"
+                android:checked="false" />
+        </RadioGroup>
 
-</RelativeLayout>
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_marginTop="15dp"
+            android:id="@+id/password_login"
+            android:hint="Password"
+            android:layout_below="@+id/uname_login"
+            android:layout_alignStart="@+id/uname_login"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:text="LOGIN"
+            android:layout_height="40dp"
+            android:id="@+id/login"
+            android:layout_width="250dp"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/password_login"
+            android:layout_alignStart="@+id/password_login"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background_curved" />
+
+        <Button
+            android:visibility="gone"
+            android:text="CANCEL"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:id="@+id/button8"
+            android:onClick="finishLoginActivity"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_below="@+id/login"
+            android:layout_alignStart="@+id/login"
+            android:layout_marginTop="10dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+

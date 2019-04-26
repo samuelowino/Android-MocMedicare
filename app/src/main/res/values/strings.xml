@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">MoC Medicare</string>
+    <string name="app_name">Daktari Online</string>
 
-    <string name="team_name">Appoholics</string>
+    <string name="team_name">MiH</string>
 
     <!--Doctor home activity-->
     <string name="home_activity_title">Home</string>
@@ -102,7 +102,6 @@
 
     <!--Dashboard fragment-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-0661921010225573/7076125939</string>
     <string name="tasks">Tasks</string>
     <string name="action_settings">Alarm</string>
     <string name="action_microphone">Micropone</string>
