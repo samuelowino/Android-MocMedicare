@@ -7,6 +7,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/reg_page_common_toolbar"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
@@ -14,6 +15,7 @@
     </android.support.v7.widget.Toolbar>
 
     <ProgressBar
+        android:visibility="gone"
         android:id="@+id/regisitration_common_progress_banr"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -120,7 +122,7 @@
             android:text="Back"
             android:layout_width="100dp"
             android:id="@+id/nav_back_button"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_background_curved"
             android:onClick="finishRegistration"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/textView14"
@@ -220,7 +222,7 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:id="@+id/move_next_button"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_background_curved"
             android:onClick="gotoNext"
             android:layout_marginStart="22dp"
             android:layout_toEndOf="@+id/nav_back_button"

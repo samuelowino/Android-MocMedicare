@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/btn_padding"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_background_curved"
             android:textColor="@color/colorWhite"
             android:text="@string/call_emergency"/>
 
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/btn_padding"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_background_curved"
             android:textColor="@color/colorWhite"
             android:text="@string/call_911"/>
 

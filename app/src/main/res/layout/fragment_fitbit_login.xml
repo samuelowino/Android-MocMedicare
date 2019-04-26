@@ -5,6 +5,7 @@
 
     <Button
         android:id="@+id/btnFitbit"
+        android:background="@drawable/button_background_curved"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fitbit Login"/>

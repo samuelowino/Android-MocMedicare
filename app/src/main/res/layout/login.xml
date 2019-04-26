@@ -109,15 +109,18 @@
             android:textColor="@color/colorPrimary" />
 
         <Button
-            android:text="LOGIN"
-            android:layout_height="40dp"
             android:id="@+id/login"
-            android:layout_width="250dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="350dp"
+            android:layout_height="?attr/actionBarSize"
             android:layout_below="@+id/password_login"
             android:layout_alignStart="@+id/password_login"
-            android:textColor="@color/white"
-            android:background="@drawable/button_background_curved" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="-43dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/button_background_curved"
+            android:gravity="center"
+            android:text="LOGIN"
+            android:textColor="@color/white" />
 
         <Button
             android:visibility="gone"

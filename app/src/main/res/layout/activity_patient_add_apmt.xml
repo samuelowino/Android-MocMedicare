@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".ui.patient.PatientAddAppointmentActivity">
+    tools:context=".view.patient.PatientAddAppointmentActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="@color/colorWhite"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_background_curved"
             android:text="@string/add_apmt"/>
 
     </LinearLayout>

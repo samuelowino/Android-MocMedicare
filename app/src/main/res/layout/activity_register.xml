@@ -66,7 +66,8 @@
         android:layout_toStartOf="@+id/editText11"
         android:layout_marginEnd="26dp"
         android:id="@+id/button6"
-        android:background="#FA8072" />
+        android:background="@drawable/button_background_curved"
+        />
 
     <Button
         android:text="Sign In"

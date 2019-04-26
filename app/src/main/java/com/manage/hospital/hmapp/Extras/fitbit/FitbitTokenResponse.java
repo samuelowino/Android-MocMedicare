@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.manage.hospital.hmapp.R;
-import com.manage.hospital.hmapp.ui.patient.FitbitActivity;
-import com.manage.hospital.hmapp.ui.SessionManager;
+import com.manage.hospital.hmapp.view.patient.FitbitActivity;
+import com.manage.hospital.hmapp.view.SessionManager;
 
 
 public class FitbitTokenResponse extends AppCompatActivity {

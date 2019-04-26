@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".ui.patient.PatientAddDoctorActivity">
+    tools:context=".view.patient.PatientAddDoctorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#1a4c88"
+            android:background="@drawable/button_background_curved"
             android:clickable="true"
             android:onClick="addDoctor"
             android:text="Add"

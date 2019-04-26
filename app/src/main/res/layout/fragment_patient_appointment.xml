@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.patient.PatientAppointmentActivity">
+    tools:context=".view.patient.PatientAppointmentActivity">
 
 
     <android.support.v7.widget.RecyclerView

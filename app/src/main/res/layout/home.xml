@@ -17,5 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button7"
+        android:background="@drawable/button_background_curved"
         android:onClick="onClicklogout" />
 </LinearLayout>

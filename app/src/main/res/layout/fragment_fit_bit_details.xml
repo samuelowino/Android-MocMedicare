@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.patient.FitBitDetailsFragment">
+    tools:context=".view.patient.FitBitDetailsFragment">
 
 
     <Button
         android:id="@+id/fitbit_login_button"
         android:layout_width="match_parent"
+        android:background="@drawable/button_background_curved"
         android:layout_height="wrap_content"
         android:text="@string/fitbit_login"/>
 
@@ -16,6 +17,7 @@
         android:id="@+id/fitbit_logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background_curved"
         android:text="@string/fitbit_logout"/>
 
 

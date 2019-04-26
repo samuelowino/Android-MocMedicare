@@ -15,12 +15,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/NoActionBarTheme">
-        <activity android:name=".ui.doctor.DoctorMainActivity">
+        <activity android:name=".view.doctor.DoctorMainActivity">
 
         </activity>
 
         <activity
-            android:name="com.manage.hospital.hmapp.ui.LauncherActivity">
+            android:name="com.manage.hospital.hmapp.view.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,114 +28,114 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.manage.hospital.hmapp.ui.Registration"
+            android:name="com.manage.hospital.hmapp.view.Registration"
             android:label="Registration" >
         </activity>
 
         <activity
-            android:name=".ui.doctor.DoctorRegistration"
+            android:name=".view.doctor.DoctorRegistration"
             android:label="Registration For Doctor" >
         </activity>
 
         <activity
-            android:name=".ui.patient.PatientRegistration"
+            android:name=".view.patient.PatientRegistration"
             android:label="Registration For Patient" >
         </activity>
 
         <activity
-            android:name="com.manage.hospital.hmapp.ui.LoginActivity"
+            android:name="com.manage.hospital.hmapp.view.LoginActivity"
             android:label="Login">
         </activity>
 
         <activity
-            android:name="com.manage.hospital.hmapp.ui.HomeActivity"
+            android:name="com.manage.hospital.hmapp.view.HomeActivity"
             android:label="Opening Page" >
         </activity>
         <activity
-            android:name=".ui.doctor.AppointmentActivity"
+            android:name=".view.doctor.AppointmentActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.patient.PatientAddAppointmentActivity"
+            android:name=".view.patient.PatientAddAppointmentActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.patient.PatientAppointmentActivity"
+            android:name=".view.patient.PatientAppointmentActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.doctor.AppointmentDetailActivity"
+            android:name=".view.doctor.AppointmentDetailActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.doctor.PatientActivity"
+            android:name=".view.doctor.PatientActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.patient.DoctorDetailActivity"
-            android:theme="@style/AppTheme" />
-
-        <activity
-            android:name=".ui.patient.ActivityHealthDataRequests"
+            android:name=".view.patient.DoctorDetailActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".ui.patient.PatientMainActivity"
+            android:name=".view.patient.ActivityHealthDataRequests"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".view.patient.PatientMainActivity"
             android:theme="@style/NoActionBarTheme" />
 
         <activity
             android:label="Emergency Contact"
-            android:name=".ui.patient.ManageEmergencyContactActivity" >
+            android:name=".view.patient.ManageEmergencyContactActivity" >
         </activity>
         <activity
             android:label="Appointment"
-            android:name=".ui.patient.ManageAppointmentActivity" >
+            android:name=".view.patient.ManageAppointmentActivity" >
         </activity>
         <activity
-            android:name=".ui.patient.PatientSourceActivity"
+            android:name=".view.patient.PatientSourceActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.doctor.PatientDetailActivity"
+            android:name=".view.doctor.PatientDetailActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.patient.PatientAddDoctorActivity"
+            android:name=".view.patient.PatientAddDoctorActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.patient.FitbitActivity"
+            android:name=".view.patient.FitbitActivity"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ui.patient.DoctorActivity"
+            android:name=".view.patient.DoctorActivity"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".ui.patient.ReminderMainActivity"
+            android:name=".view.patient.ReminderMainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ui.patient.NewTaskActivity"
+            android:name=".view.patient.NewTaskActivity"
             android:label="@string/title_activity_new_task"
-            android:parentActivityName=".ui.patient.ReminderMainActivity"
+            android:parentActivityName=".view.patient.ReminderMainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.patient.ReminderMainActivity" />
+                android:value=".view.patient.ReminderMainActivity" />
         </activity>
         <activity
-            android:name=".ui.patient.EditViewActivity"
+            android:name=".view.patient.EditViewActivity"
             android:label="@string/title_activity_edit_task"
-            android:parentActivityName=".ui.patient.EditViewActivity"
+            android:parentActivityName=".view.patient.EditViewActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.patient.ReminderMainActivity" />
+                android:value=".view.patient.ReminderMainActivity" />
         </activity>
         <activity
-            android:name=".ui.patient.ViewTaskActivity"
+            android:name=".view.patient.ViewTaskActivity"
             android:label="@string/title_activity_view_task"
-            android:parentActivityName=".ui.patient.ReminderMainActivity"
+            android:parentActivityName=".view.patient.ReminderMainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.patient.ReminderMainActivity" />
+                android:value=".view.patient.ReminderMainActivity" />
         </activity>
         <activity
-            android:name=".ui.patient.AlarmActivity"
+            android:name=".view.patient.AlarmActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 

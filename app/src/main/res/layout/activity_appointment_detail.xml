@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.doctor.AppointmentDetailActivity">
+    tools:context=".view.doctor.AppointmentDetailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -249,7 +249,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/button_background_curved"
                 android:text="@string/appointment_accept"
                 android:textColor="@color/colorWhite" />
 
@@ -261,7 +261,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/button_background_curved"
                 android:text="@string/appointment_cancel"
                 android:textColor="@color/colorWhite" />
 
