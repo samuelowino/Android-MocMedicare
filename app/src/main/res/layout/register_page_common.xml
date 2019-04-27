@@ -17,7 +17,7 @@
 
     <ProgressBar
         android:visibility="gone"
-        android:id="@+id/regisitration_common_progress_banr"
+        android:id="@+id/registration_common_progress_banr"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -91,7 +91,7 @@
             android:inputType="textPassword"
             android:background="#ffff"
             android:ems="10"
-            android:id="@+id/phone_no_edit_text"
+            android:id="@+id/password_edit_text"
             android:hint="Enter Password"
             android:layout_alignTop="@+id/textView9"
             android:layout_alignStart="@+id/email" />
@@ -117,7 +117,7 @@
             android:id="@+id/gender_edit_text"
             android:hint="Male/Female"
             android:layout_alignTop="@+id/textView14"
-            android:layout_alignStart="@+id/phone_no_edit_text" />
+            android:layout_alignStart="@+id/password_edit_text" />
 
         <Button
             android:text="Back"
@@ -222,9 +222,9 @@
             android:text="Submit"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:id="@+id/move_next_button"
+            android:id="@+id/complete_sign_up_button"
             android:background="@drawable/button_background_curved"
-            android:onClick="gotoNext"
+            android:onClick="completeSignUp"
             android:layout_marginStart="22dp"
             android:layout_toEndOf="@+id/nav_back_button"
             android:layout_alignBottom="@+id/nav_back_button"

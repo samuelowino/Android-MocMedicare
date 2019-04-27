@@ -34,7 +34,7 @@
         android:id="@+id/application_logo_image_view"
         android:src="@drawable/healthcare_bg"
         android:layout_gravity="center"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="31dp"
         android:layout_width="72dp"
         android:layout_height="72dp" />
 
@@ -59,7 +59,7 @@
         <EditText
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:layout_marginTop="91dp"
+            android:layout_marginTop="61dp"
             android:id="@+id/user_email_edit_text"
             android:hint="Enter Email"
             android:layout_width="250dp"
@@ -70,6 +70,7 @@
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
+            android:visibility="gone"
             android:orientation="horizontal"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
@@ -115,6 +116,7 @@
             android:layout_below="@+id/password_edit_text"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/button_background_curved"
             android:text="LOGIN"
             android:textColor="@color/white" />

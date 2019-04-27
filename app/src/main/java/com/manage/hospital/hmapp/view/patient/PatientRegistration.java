@@ -16,10 +16,10 @@ import android.widget.Toolbar;
 import com.manage.hospital.hmapp.R;
 import com.manage.hospital.hmapp.data.PatientInfo;
 import com.manage.hospital.hmapp.view.AlertDialogManager;
-import com.manage.hospital.hmapp.view.LauncherActivity;
 import com.manage.hospital.hmapp.view.SessionManager;
 import com.manage.hospital.hmapp.utility.ConfigConstant;
 import com.manage.hospital.hmapp.utility.encryptPasscode;
+import com.manage.hospital.hmapp.view.doctor.PatientActivity;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -227,7 +227,7 @@ public class PatientRegistration extends Activity {
                 session = new SessionManager(getApplicationContext());
                 session.createLoginSession(P.Username, userID, "Patient");
 
-                Intent i = new Intent(getApplicationContext(), LauncherActivity.class);
+                Intent i = new Intent(getApplicationContext(), PatientActivity.class);
                 startActivity(i);
                 finish();
             } else {

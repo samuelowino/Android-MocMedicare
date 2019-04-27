@@ -15,41 +15,44 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/NoActionBarTheme">
-        <activity android:name=".view.doctor.DoctorMainActivity">
-
-        </activity>
-
         <activity
-            android:name="com.manage.hospital.hmapp.view.LauncherActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".view.doctor.DoctorMainActivity"
+            android:launchMode="singleTop"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="com.manage.hospital.hmapp.view.RegistrationActivity"
+            android:launchMode="singleTop"
             android:label="Registration" >
         </activity>
 
         <activity
             android:name=".view.doctor.DoctorRegistration"
+            android:launchMode="singleTop"
             android:label="Registration For Doctor" >
         </activity>
 
         <activity
             android:name=".view.patient.PatientRegistration"
+            android:launchMode="singleTop"
             android:label="Registration For Patient" >
         </activity>
 
         <activity
             android:name="com.manage.hospital.hmapp.view.LoginActivity"
+            android:launchMode="singleTop"
             android:label="Login">
         </activity>
 
         <activity
             android:name="com.manage.hospital.hmapp.view.HomeActivity"
+            android:launchMode="singleTop"
             android:label="Opening Page" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".view.doctor.AppointmentActivity"
@@ -65,9 +68,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".view.doctor.PatientActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".view.patient.DoctorDetailActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
 
         <activity
@@ -76,6 +81,7 @@
 
         <activity
             android:name=".view.patient.PatientMainActivity"
+            android:launchMode="singleTop"
             android:theme="@style/NoActionBarTheme" />
 
         <activity
@@ -100,11 +106,12 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".view.patient.DoctorActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".view.patient.ReminderMainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.patient.NewTaskActivity"
             android:label="@string/title_activity_new_task"
@@ -143,7 +150,7 @@
 
         <service
             android:name=".Extras.broadcast_receiver.RingtonePlayingService"
-            android:enabled="true"></service>
+            android:enabled="true" />
 
         <activity android:name=".Extras.fitbit.FitbitTokenResponse"
             android:theme="@style/NoActionBarTheme">
@@ -154,8 +161,7 @@
                 <data android:scheme="hospapp" android:host="callbackresponse"/>
             </intent-filter>
         </activity>
-        <service android:name=".Extras.broadcast_receiver.FallDetectService"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <service android:name=".Extras.broadcast_receiver.FallDetectService"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
