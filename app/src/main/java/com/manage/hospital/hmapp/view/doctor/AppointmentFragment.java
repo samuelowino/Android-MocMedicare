@@ -37,7 +37,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 
-public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerViewAppointment;
@@ -50,20 +50,20 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root_view=inflater.inflate(R.layout.fragment_appointment,container,false);
+        View root_view = inflater.inflate(R.layout.fragment_appointment, container, false);
 
-        session=new SessionManager(getActivity());
+        session = new SessionManager(getActivity());
         HashMap<String, String> user = session.getUserDetails();
         doc_id = user.get(SessionManager.KEY_ID);
 
 
-        swipeRefreshLayout=(SwipeRefreshLayout)root_view.findViewById(R.id.appointment_swipe_refresh_layout);
+        swipeRefreshLayout = (SwipeRefreshLayout) root_view.findViewById(R.id.appointment_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        recyclerViewAppointment=(RecyclerView) root_view.findViewById(R.id.appointment_list_view);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        recyclerViewAppointment = (RecyclerView) root_view.findViewById(R.id.appointment_list_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        RecyclerView.LayoutManager layoutManager=linearLayoutManager;
+        RecyclerView.LayoutManager layoutManager = linearLayoutManager;
 
         recyclerViewAppointment.setLayoutManager(layoutManager);
         recyclerViewAppointment.setItemAnimator(new DefaultItemAnimator());
@@ -97,12 +97,12 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
             appointmentItemListener.onAppointmentItemClick(position);
     }
 
-    public void getAppointmentList(){
-        FetchAppointmentListTask fetchAppointmentListTask=new FetchAppointmentListTask();
+    public void getAppointmentList() {
+        FetchAppointmentListTask fetchAppointmentListTask = new FetchAppointmentListTask();
         fetchAppointmentListTask.execute(doc_id);
     }
 
-    public void updateAppointmentList(){
+    public void updateAppointmentList() {
         getAppointmentList();
     }
 
@@ -115,20 +115,20 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
     }
 
 
-    public class FetchAppointmentListTask extends AsyncTask<String,Void,AppointmentData> {
+    public class FetchAppointmentListTask extends AsyncTask<String, Void, AppointmentData> {
 
-        private final String LOG_TAG=FetchAppointmentListTask.class.getSimpleName();
+        private final String LOG_TAG = FetchAppointmentListTask.class.getSimpleName();
 
         private AppointmentData getAppointmentListFromJson(String appJsonStr) throws JSONException {
 
-            AppointmentData appointmentData=AppointmentData.getInstance();
+            AppointmentData appointmentData = AppointmentData.getInstance();
             appointmentData.clear();
             AppointmentStructure appObj;
-            JSONArray jsonArray=new JSONArray(appJsonStr);
+            JSONArray jsonArray = new JSONArray(appJsonStr);
 
-            for(int i=0;i<jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
 
-                appObj=new AppointmentStructure(jsonArray.getJSONObject(i));
+                appObj = new AppointmentStructure(jsonArray.getJSONObject(i));
                 appointmentData.add(appObj);
 
             }
@@ -142,73 +142,72 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
         protected AppointmentData doInBackground(String... params) {
 
 
-            HttpURLConnection urlConnection=null;
-            BufferedReader reader=null;
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
 
-            String appListJson=null;
+            String appListJson = null;
 
-            try{
-                String baseUrl= ConfigConstant.BASE_URL;
+            try {
+                String baseUrl = ConfigConstant.BASE_URL;
                 final String PATH_PARAM = ConfigConstant.DOC_APPOINTMENT_LIST_ENDPOINT;
-                final String DOCTOR_ID=params[0];
+                final String DOCTOR_ID = params[0];
 
 
-                Uri appointmtUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(DOCTOR_ID).build();
+                Uri appointmtUri = Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(DOCTOR_ID).build();
 
-                URL url=new URL(appointmtUri.toString());
+                URL url = new URL(appointmtUri.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
 
 
-                InputStream inputStream=urlConnection.getInputStream();
-                StringBuffer buffer=new StringBuffer();
-                if(inputStream==null){
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if (inputStream == null) {
                     return null;
                 }
 
-                reader=new BufferedReader(new InputStreamReader(inputStream));
+                reader = new BufferedReader(new InputStreamReader(inputStream));
 
                 String line;
 
-                while((line=reader.readLine())!=null){
-                    buffer.append(line+"\n");
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line + "\n");
                 }
 
-                if(buffer.length()==0){
+                if (buffer.length() == 0) {
                     return null;
                 }
 
-                appListJson=buffer.toString();
+                appListJson = buffer.toString();
 
 
-                Log.v(LOG_TAG,"AppointmentListStr: "+appListJson);
+                Log.v(LOG_TAG, "AppointmentListStr: " + appListJson);
 
-            }catch (IOException e){
+            } catch (IOException e) {
 
-                Log.e(LOG_TAG,e.getMessage(),e);
+                Log.e(LOG_TAG, e.getMessage(), e);
                 return null;
 
-            }
-            finally {
-                if(urlConnection!=null){
+            } finally {
+                if (urlConnection != null) {
                     urlConnection.disconnect();
                 }
-                if(reader!=null){
-                    try{
+                if (reader != null) {
+                    try {
                         reader.close();
-                    }catch (final IOException e){
-                        Log.e(LOG_TAG,"Error closing stream",e);
+                    } catch (final IOException e) {
+                        Log.e(LOG_TAG, "Error closing stream", e);
                     }
                 }
 
             }
 
-            try{
+            try {
                 return getAppointmentListFromJson(appListJson);
-            }catch (JSONException e){
-                Log.e(LOG_TAG,e.getMessage(),e);
+            } catch (JSONException e) {
+                Log.e(LOG_TAG, e.getMessage(), e);
                 e.printStackTrace();
             }
 
@@ -217,12 +216,12 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
 
 
         @Override
-        protected void onPostExecute(AppointmentData result){
-            if(result!=null){
-                if(appointmentListAdapter==null) {
+        protected void onPostExecute(AppointmentData result) {
+            if (result != null) {
+                if (appointmentListAdapter == null) {
                     appointmentListAdapter = new AppointmentListAdapter(getContext(), result.data);
                     recyclerViewAppointment.setAdapter(appointmentListAdapter);
-                }else{
+                } else {
                     appointmentListAdapter.notifyDataSetChanged();
                 }
 

@@ -95,20 +95,20 @@ public class DoctorRegistration extends Activity {
 
         System.out.println("user name = " + uname);
 
-        DoctorInfo D = new DoctorInfo();
-        D.setFname(bundle.getString("fname"));
-        D.setLname(bundle.getString("lname"));
-        D.setDOB(bundle.getString("DOB"));
-        D.setEmail(bundle.getString("email"));
-        D.setContact(bundle.getString("contactNo"));
-        D.setGender(bundle.getString("gender"));
-        D.setSpeciality(speciality);
-        D.setLicense(license);
-        D.setAddress(clinic_add);
-        D.setUsername(uname);
-        D.setPassword(password);
+        DoctorInfo doctorInfo = new DoctorInfo();
+        doctorInfo.setFname(bundle.getString("fname"));
+        doctorInfo.setLname(bundle.getString("lname"));
+        doctorInfo.setDOB(bundle.getString("DOB"));
+        doctorInfo.setEmail(bundle.getString("email"));
+        doctorInfo.setContact(bundle.getString("contactNo"));
+        doctorInfo.setGender(bundle.getString("gender"));
+        doctorInfo.setSpeciality(speciality);
+        doctorInfo.setLicense(license);
+        doctorInfo.setAddress(clinic_add);
+        doctorInfo.setUsername(uname);
+        doctorInfo.setPassword(password);
 
-        new AsyncTaskDoc().execute(D);
+        new AsyncTaskDoc().execute(doctorInfo);
 
     }
 

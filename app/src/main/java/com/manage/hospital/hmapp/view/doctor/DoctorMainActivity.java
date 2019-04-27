@@ -91,7 +91,7 @@ public class DoctorMainActivity extends AppCompatActivity implements DocDashboar
             public void onDrawerClosed(View view) {
 
                 if(isMenuItemClicked) {
-                    int position=drawerList.getCheckedItemPosition();
+                    int position = drawerList.getCheckedItemPosition();
                     displayActivity(position);
                     isMenuItemClicked=false;
                 }

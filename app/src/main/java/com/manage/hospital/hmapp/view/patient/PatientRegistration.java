@@ -94,20 +94,20 @@ public class PatientRegistration extends Activity {
 
         System.out.println("user name = " + uname);
 
-        PatientInfo P = new PatientInfo();
-        P.setFname(bundle.getString("fname"));
-        P.setLname(bundle.getString("lname"));
-        P.setDOB(bundle.getString("DOB"));
-        P.setEmail(bundle.getString("email"));
-        P.setContact(bundle.getString("contactNo"));
-        P.setGender(bundle.getString("gender"));
-        P.setWeight(weight);
-        P.setAge(age);
-        P.setAddress(home);
-        P.setUsername(uname);
-        P.setPassword(password);
+        PatientInfo patientInfo = new PatientInfo();
+        patientInfo.setFname(bundle.getString("fname"));
+        patientInfo.setLname(bundle.getString("lname"));
+        patientInfo.setDOB(bundle.getString("DOB"));
+        patientInfo.setEmail(bundle.getString("email"));
+        patientInfo.setContact(bundle.getString("contactNo"));
+        patientInfo.setGender(bundle.getString("gender"));
+        patientInfo.setWeight(weight);
+        patientInfo.setAge(age);
+        patientInfo.setAddress(home);
+        patientInfo.setUsername(uname);
+        patientInfo.setPassword(password);
 
-        new AsyncTaskPatient().execute(P);
+        new AsyncTaskPatient().execute(patientInfo);
 
 
     }

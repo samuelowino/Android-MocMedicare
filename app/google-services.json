@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "381458819682",
+    "firebase_url": "https://msomo-a73cd.firebaseio.com",
+    "project_id": "msomo-a73cd",
+    "storage_bucket": "msomo-a73cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381458819682:android:795924fa7f15c121",
+        "android_client_info": {
+          "package_name": "com.manage.hospital.hmapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381458819682-tjluk78d6o1vuv819rdv7a4pvifu2har.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrhZ-466etwE87LGjpcELIS-AfyRTHzio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381458819682-tjluk78d6o1vuv819rdv7a4pvifu2har.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381458819682:android:227a1fb0e8357eeb",
+        "android_client_info": {
+          "package_name": "com.meddevlabs.org.msomo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381458819682-q361d139h9ja7vq4egl55ge50j7tgddt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.meddevlabs.org.msomo",
+            "certificate_hash": "f0b5de5e7a709d4f2b09800f89e309db4550cba5"
+          }
+        },
+        {
+          "client_id": "381458819682-tjluk78d6o1vuv819rdv7a4pvifu2har.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrhZ-466etwE87LGjpcELIS-AfyRTHzio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381458819682-tjluk78d6o1vuv819rdv7a4pvifu2har.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381458819682:android:85941bdbf1d411c7",
+        "android_client_info": {
+          "package_name": "org.androidgeek.com.fcmcodelabs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381458819682-tjluk78d6o1vuv819rdv7a4pvifu2har.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrhZ-466etwE87LGjpcELIS-AfyRTHzio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381458819682-tjluk78d6o1vuv819rdv7a4pvifu2har.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,10 +1,20 @@
 package com.manage.hospital.hmapp.data;
 
 
+public class PatientInfo {
 
-public class PatientInfo
-{
-    public String fname,lname,DOB,email,gender,contact,age,weight,address,Username,Password;
+    public String fname,
+            lname,
+            DOB,
+            email,
+            gender,
+            contact,
+            age,
+            weight,
+            address,
+            Username,
+            Password;
+
     public int ID;
 
     public void setID(int ID) {

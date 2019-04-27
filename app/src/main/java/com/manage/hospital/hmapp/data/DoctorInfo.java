@@ -4,8 +4,20 @@ package com.manage.hospital.hmapp.data;
 
 public class DoctorInfo
 {
-    public String fname,lname,DOB,email,gender,contact,license,speciality,address,Username,Password;
+    public String fname,
+            lname,
+            DOB,
+            email,
+            gender,
+            contact,
+            license,
+            speciality,
+            address,
+            Username,
+            Password;
     public int ID;
+
+
 
     public void setID(int ID) {
         this.ID = ID;

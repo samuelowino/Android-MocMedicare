@@ -1,16 +1,15 @@
 package com.manage.hospital.hmapp.view;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import java.util.HashMap;
 
 import android.content.SharedPreferences.Editor;
 
-public class SessionManager
-{
+public class SessionManager {
 
     SharedPreferences pref;
     Editor editor;
@@ -28,99 +27,93 @@ public class SessionManager
     public static final String FITBIT_TOKEN_TYPE = "fitbitTokenType";
     public static final String FITBIT_FULL_AUTH = "fitbitFullAuth";
 
-    public static final String EMERGENCY_CONTACT="emergencyContact";
-    public static final String EMERGENCY_ID="emergencyID";
+    public static final String EMERGENCY_CONTACT = "emergencyContact";
+    public static final String EMERGENCY_ID = "emergencyID";
 
-    public static final String FITBIT_SLEEP_DATA="fitbitSleep";
-    public static final String FITBIT_CALORIES_DATA="fitbitCalories";
-    public static final String FITBIT_HEART_RATE_DATA="fitbitHeartRate";
-    public static final String FITBIT_STEPS_DATA="fitbitSteps";
+    public static final String FITBIT_SLEEP_DATA = "fitbitSleep";
+    public static final String FITBIT_CALORIES_DATA = "fitbitCalories";
+    public static final String FITBIT_HEART_RATE_DATA = "fitbitHeartRate";
+    public static final String FITBIT_STEPS_DATA = "fitbitSteps";
 
 
-    public SessionManager(Context context)
-    {
+    public SessionManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
 
-    public void createLoginSession(String Username, String ID, String type)
-    {
+    public void createLoginSession(String Username, String ID, String type) {
 
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(KEY_NAME, Username);
-        editor.putString(KEY_ID,ID);
-        editor.putString(KEY_TYPE,type);
+        editor.putString(KEY_ID, ID);
+        editor.putString(KEY_TYPE, type);
         editor.commit();
     }
 
-    public void createFitbitSession(Boolean f1, String f2, String f3, String f4, String f5)
-    {
-        editor.putBoolean(HAS_ACCESS_TOKEN,f1);
+    public void createFitbitSession(Boolean f1, String f2, String f3, String f4, String f5) {
+        editor.putBoolean(HAS_ACCESS_TOKEN, f1);
         editor.putString(FITBIT_UID, f2);
-        editor.putString(FITBIT_TOKEN,f3);
-        editor.putString(FITBIT_TOKEN_TYPE,f4);
-        editor.putString(FITBIT_FULL_AUTH,f5);
+        editor.putString(FITBIT_TOKEN, f3);
+        editor.putString(FITBIT_TOKEN_TYPE, f4);
+        editor.putString(FITBIT_FULL_AUTH, f5);
         editor.commit();
 
     }
 
-    public void setFitbitData(String sleep_data,String calories,String heart_rate,String steps){
+    public void setFitbitData(String sleep_data, String calories, String heart_rate, String steps) {
 
-        editor.putString(FITBIT_SLEEP_DATA,sleep_data);
-        editor.putString(FITBIT_CALORIES_DATA,calories);
-        editor.putString(FITBIT_HEART_RATE_DATA,heart_rate);
-        editor.putString(FITBIT_STEPS_DATA,steps);
+        editor.putString(FITBIT_SLEEP_DATA, sleep_data);
+        editor.putString(FITBIT_CALORIES_DATA, calories);
+        editor.putString(FITBIT_HEART_RATE_DATA, heart_rate);
+        editor.putString(FITBIT_STEPS_DATA, steps);
         editor.commit();
     }
 
 
-    public HashMap<String, Boolean>getFitbit()
-    {
+    public HashMap<String, Boolean> getFitbit() {
         HashMap<String, Boolean> fitbit = new HashMap<String, Boolean>();
-        fitbit.put(HAS_ACCESS_TOKEN, pref.getBoolean(HAS_ACCESS_TOKEN,false));
+        fitbit.put(HAS_ACCESS_TOKEN, pref.getBoolean(HAS_ACCESS_TOKEN, false));
 
         return fitbit;
     }
 
-    public String getFitbitSleepData(){
-        return pref.getString(FITBIT_SLEEP_DATA,"");
+    public String getFitbitSleepData() {
+        return pref.getString(FITBIT_SLEEP_DATA, "");
     }
 
-    public String getFitbitCaloriesData(){
-        return pref.getString(FITBIT_CALORIES_DATA,"");
+    public String getFitbitCaloriesData() {
+        return pref.getString(FITBIT_CALORIES_DATA, "");
     }
 
-    public String getFitbitHeartRateData(){
-        return pref.getString(FITBIT_HEART_RATE_DATA,"");
+    public String getFitbitHeartRateData() {
+        return pref.getString(FITBIT_HEART_RATE_DATA, "");
     }
 
-    public String getFitbitStepsData(){
-        return pref.getString(FITBIT_STEPS_DATA,"");
+    public String getFitbitStepsData() {
+        return pref.getString(FITBIT_STEPS_DATA, "");
     }
 
-    public Boolean hasFitbitToken(){
-        boolean istoken=pref.getBoolean(HAS_ACCESS_TOKEN,false);
+    public Boolean hasFitbitToken() {
+        boolean istoken = pref.getBoolean(HAS_ACCESS_TOKEN, false);
         return istoken;
     }
 
-    public String getFitbitToken(){
+    public String getFitbitToken() {
 
-        return pref.getString(FITBIT_TOKEN,"");
+        return pref.getString(FITBIT_TOKEN, "");
     }
 
-    public String getFitbitUid(){
+    public String getFitbitUid() {
 
-        return pref.getString(FITBIT_UID,"");
+        return pref.getString(FITBIT_UID, "");
     }
 
 
-    public void checkLogin()
-    {
+    public void checkLogin() {
         System.out.println("Inside checklogin");
-        if(!this.isLoggedIn())
-        {
+        if (!this.isLoggedIn()) {
             System.out.println("Inside checklogin if statement");
             Intent i = new Intent(_context, LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -131,8 +124,7 @@ public class SessionManager
     }
 
 
-    public HashMap<String, String> getUserDetails()
-    {
+    public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
 
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
@@ -142,23 +134,20 @@ public class SessionManager
         return user;
     }
 
-    public void createEmergencyContact(String contact, String ID)
-    {
+    public void createEmergencyContact(String contact, String ID) {
         editor.putString(EMERGENCY_ID, ID);
-        editor.putString(EMERGENCY_CONTACT,contact);
+        editor.putString(EMERGENCY_CONTACT, contact);
     }
 
-    public HashMap<String, String> getEmergencyContact()
-    {
+    public HashMap<String, String> getEmergencyContact() {
         HashMap<String, String> E = new HashMap<>();
-        E.put(EMERGENCY_CONTACT,pref.getString(EMERGENCY_CONTACT,null));
-        E.put(EMERGENCY_ID,pref.getString(EMERGENCY_ID,null));
+        E.put(EMERGENCY_CONTACT, pref.getString(EMERGENCY_CONTACT, null));
+        E.put(EMERGENCY_ID, pref.getString(EMERGENCY_ID, null));
 
         return E;
     }
 
-    public void logoutUser()
-    {
+    public void logoutUser() {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
@@ -169,8 +158,7 @@ public class SessionManager
     }
 
 
-    public boolean isLoggedIn()
-    {
+    public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
     }
 
