@@ -6,24 +6,28 @@
     android:background="@color/colorPrimary">
 
     <Button
+        android:enabled="false"
+        android:visibility="invisible"
         android:text="LOGIN "
         android:layout_height="35dp"
         android:layout_marginBottom="63dp"
-        android:id="@+id/button"
+        android:id="@+id/login_button"
         android:background="@drawable/button_background_white"
         android:onClick="gotoLogin"
         android:textColor="@color/colorPrimary"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/button2"
+        android:layout_alignStart="@+id/register_button"
         android:layout_width="250dp" />
 
     <Button
+        android:enabled="false"
+        android:visibility="invisible"
         android:text="REGISTER "
         android:layout_marginBottom="24dp"
-        android:id="@+id/button2"
+        android:id="@+id/register_button"
         android:background="@drawable/button_background_white"
         android:onClick="gotoRegister"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/login_button"
         android:textColor="@color/colorPrimary"
         android:layout_centerHorizontal="true"
         android:layout_height="35dp"

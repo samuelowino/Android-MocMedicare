@@ -20,6 +20,9 @@
         <item>@drawable/ic_logout</item>
     </array>
 
+    <!-- Preferences -->
+    <string name="global_preference_file_name">com.mih.daktari_online_global_prefs_file</string>
+
     <!--Doctor Appointment Activity-->
     <string name="appointment_title">Appointments</string>
 
@@ -219,9 +222,7 @@
 
     <!--Patient Health Data Requests-->
     <string name="patient_health_req_title">Health Data Requests</string>
-
-
-
+    <string name="user_auth_pref_key">global_user_auth_prefs_key</string>
 
 
 </resources>

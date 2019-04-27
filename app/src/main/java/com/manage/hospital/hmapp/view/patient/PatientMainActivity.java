@@ -140,7 +140,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         mCountAccelUpdates = 0;
         mStartTimestamp = System.currentTimeMillis();
 
-        new AsyncTaskCheckEmergency().execute(Integer.parseInt(patient_id));
+        //new AsyncTaskCheckEmergency().execute(Integer.parseInt(patient_id));
 
         Intent intent = new Intent(this, FallDetectService.class);
         startService(intent);

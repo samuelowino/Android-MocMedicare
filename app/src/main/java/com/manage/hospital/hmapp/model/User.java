@@ -5,17 +5,17 @@ public class User {
     private String userEmail;
     private String userPassword;
     private String userUuid;
-    private boolean isPatient;
+    private String role;
     private String photoUri;
 
     public User() {
     }
 
-    public User(String userEmail, String userPassword, String userUuid, boolean isPatient) {
+    public User(String userEmail, String userPassword, String userUuid, String role) {
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userUuid = userUuid;
-        this.isPatient = isPatient;
+        this.role = role;
     }
 
     public String getUserEmail() {
@@ -42,12 +42,12 @@ public class User {
         this.userUuid = userUuid;
     }
 
-    public boolean isPatient() {
-        return isPatient;
+    public String getRole() {
+        return role;
     }
 
-    public void setPatient(boolean patient) {
-        isPatient = patient;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
@@ -56,7 +56,8 @@ public class User {
                 "userEmail='" + userEmail + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", userUuid='" + userUuid + '\'' +
-                ", isPatient=" + isPatient +
+                ", role='" + role + '\'' +
+                ", photoUri='" + photoUri + '\'' +
                 '}';
     }
 

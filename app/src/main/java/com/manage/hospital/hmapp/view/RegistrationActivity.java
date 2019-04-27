@@ -3,6 +3,8 @@ package com.manage.hospital.hmapp.view;
 import android.app.DatePickerDialog;
 //import android.app.DialogFragment;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
@@ -36,6 +38,14 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
     ProgressBar progressBar;
     SQLiteDatabase daktariDatabase;
     SQLiteOpenHelper dbOpenHelper;
+    SharedPreferences sharedPreferences;
+
+    EditText firstNameText;
+    EditText lastNameEditText;
+    EditText dob;
+    EditText emailAddressEditText;
+    EditText genderEditText;
+    EditText passwordEditText;
 
     String firstName;
     String lastName;
@@ -63,6 +73,7 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
         firebaseAuth = FirebaseAuth.getInstance();
         dbOpenHelper = new DaktariDatabaseOpenHelper(getApplicationContext());
         daktariDatabase = dbOpenHelper.getWritableDatabase();
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.global_preference_file_name), Context.MODE_PRIVATE);
     }
 
     @Override
@@ -98,6 +109,14 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
         RadioButton doctorRadioButton = (RadioButton) findViewById(R.id.radio_doctor);
         RadioButton patientRadioButton = (RadioButton) findViewById(R.id.radio_patient);
 
+        firstNameText.setEnabled(false);
+        lastNameEditText.setEnabled(false);
+        dob.setEnabled(false);
+        emailAddressEditText.setEnabled(false);
+        genderEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
+
+
          firstName = firstNameText.getText().toString();
          lastName = lastNameEditText.getText().toString();
          dateOfBirth = dob.getText().toString();
@@ -121,6 +140,7 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
         contentValues.put(UserContract.UserEntry.COLUMN_NAME_FIRST_NAME,firstName);
         contentValues.put(UserContract.UserEntry.COLUMN_NAME_LAST_NAME,lastName);
         contentValues.put(UserContract.UserEntry.COLUMN_NAME_GENDER,gender);
+        contentValues.put(UserContract.UserEntry.COLUMN_NAME_EMAIL,email);
         contentValues.put(UserContract.UserEntry.COLUMN_NAME_DATE_OF_BIRTH, dateOfBirth);
         contentValues.put(UserContract.UserEntry.COLUMN_NAME_HASHED_PASSWORD,password);
         contentValues.put(UserContract.UserEntry.COLUMN_NAME_ROLE,role);
@@ -139,7 +159,17 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
                         if (task.isSuccessful()){
                             cacheUserDetails();
                             Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_SHORT).show();
+                            startActivity( new Intent(RegistrationActivity.this,LoginActivity.class));
+                            SharedPreferences.Editor sharedPrefsEditor = sharedPreferences.edit();
+                            sharedPrefsEditor.putBoolean(getResources().getString(R.string.user_auth_pref_key),true);
+                            sharedPrefsEditor.apply();
                         }else{
+                            firstNameText.setEnabled(true);
+                            lastNameEditText.setEnabled(true);
+                            dob.setEnabled(true);
+                            emailAddressEditText.setEnabled(true);
+                            genderEditText.setEnabled(true);
+                            passwordEditText.setEnabled(true);
                             Toast.makeText(getApplicationContext(),"Registration failed",Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -190,6 +220,7 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        daktariDatabase.close();
     }
 
     @Override
