@@ -17,7 +17,7 @@ import com.manage.hospital.hmapp.view.doctor.DoctorRegistration;
 import com.manage.hospital.hmapp.view.patient.PatientRegistration;
 
 
-public class Registration extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class RegistrationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null){
-            getSupportActionBar().setTitle("Daktari Online : Registration");
+            getSupportActionBar().setTitle("Register");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -83,7 +83,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
     }
 
     public void gotoRegistrationDoc(String fname, String lname, String DOB, String email, String gender, String contactNo) {
-        Intent intent = new Intent(Registration.this, DoctorRegistration.class);
+        Intent intent = new Intent(RegistrationActivity.this, DoctorRegistration.class);
         intent.putExtra("str", 0);
         intent.putExtra("fname", fname);
         intent.putExtra("lname", lname);
@@ -95,7 +95,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
     }
 
     public void gotoRegistrationPatient(String fname, String lname, String DOB, String email, String gender, String contactNo) {
-        Intent intent = new Intent(Registration.this, PatientRegistration.class);
+        Intent intent = new Intent(RegistrationActivity.this, PatientRegistration.class);
         intent.putExtra("str", 1);
         intent.putExtra("fname", fname);
         intent.putExtra("lname", lname);
@@ -122,7 +122,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
     }
 
     public void finishRegistration(View V) {
-        Registration.this.finish();
+        RegistrationActivity.this.finish();
     }
 
     @Override

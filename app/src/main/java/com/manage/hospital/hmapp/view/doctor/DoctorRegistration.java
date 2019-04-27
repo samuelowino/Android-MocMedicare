@@ -52,7 +52,7 @@ public class DoctorRegistration extends Activity {
         setActionBar(toolbar);
 
         if (getActionBar() != null){
-            getActionBar().setTitle("Doctor Registration");
+            getActionBar().setTitle("Doctor RegistrationActivity");
             getActionBar().setDisplayShowHomeEnabled(true);
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }

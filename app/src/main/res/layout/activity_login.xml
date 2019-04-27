@@ -57,10 +57,10 @@
             android:textColor="@color/colorPrimary" />
 
         <EditText
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:ems="10"
             android:layout_marginTop="91dp"
-            android:id="@+id/uname_login"
+            android:id="@+id/user_email_edit_text"
             android:hint="Enter Email"
             android:layout_width="250dp"
             android:layout_height="40dp"
@@ -75,14 +75,14 @@
             android:layout_marginTop="15dp"
             android:layout_width="200dp"
             android:layout_below="@+id/textView13"
-            android:layout_alignEnd="@+id/uname_login"
+            android:layout_alignEnd="@+id/user_email_edit_text"
             android:layout_marginEnd="14dp">
 
             <RadioButton
                 android:text="Doctor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/doc_rd"
+                android:id="@+id/doctor_radio_button"
                 android:layout_weight="1"
                 android:checked="true" />
 
@@ -90,7 +90,7 @@
                 android:text="Patient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/patient_rd"
+                android:id="@+id/patient_radio_button"
                 android:layout_weight="1"
                 android:checked="false" />
         </RadioGroup>
@@ -101,10 +101,10 @@
             android:inputType="textPassword"
             android:ems="10"
             android:layout_marginTop="15dp"
-            android:id="@+id/password_login"
+            android:id="@+id/password_edit_text"
             android:hint="Password"
-            android:layout_below="@+id/uname_login"
-            android:layout_alignStart="@+id/uname_login"
+            android:layout_below="@+id/user_email_edit_text"
+            android:layout_alignStart="@+id/user_email_edit_text"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary" />
 
@@ -112,30 +112,29 @@
             android:id="@+id/login"
             android:layout_width="350dp"
             android:layout_height="?attr/actionBarSize"
-            android:layout_below="@+id/password_login"
-            android:layout_alignStart="@+id/password_login"
+            android:layout_below="@+id/password_edit_text"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="-43dp"
             android:layout_marginTop="26dp"
             android:background="@drawable/button_background_curved"
-            android:gravity="center"
             android:text="LOGIN"
             android:textColor="@color/white" />
 
-        <Button
-            android:visibility="gone"
-            android:text="CANCEL"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:id="@+id/button8"
+        <TextView
+            android:text="sign up "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sign_up_view"
+            android:gravity="start"
+            android:layout_centerHorizontal="true"
             android:onClick="finishLoginActivity"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/login"
-            android:layout_alignStart="@+id/login"
             android:layout_marginTop="10dp" />
 
+
     </RelativeLayout>
+
+
 
 </LinearLayout>
 

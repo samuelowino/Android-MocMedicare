@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.manage.hospital.hmapp.view.Registration"
+            android:name="com.manage.hospital.hmapp.view.RegistrationActivity"
             android:label="Registration" >
         </activity>
 

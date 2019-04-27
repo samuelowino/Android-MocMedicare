@@ -5,69 +5,58 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.manage.hospital.hmapp.R;
-import com.manage.hospital.hmapp.data.LoginInfo;
-import com.manage.hospital.hmapp.utility.ConfigConstant;
-import com.manage.hospital.hmapp.utility.encryptPasscode;
-import com.manage.hospital.hmapp.view.doctor.DoctorMainActivity;
-import com.manage.hospital.hmapp.view.patient.PatientMainActivity;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.manage.hospital.hmapp.model.User;
 
 
 public class LoginActivity extends Activity {
 
-    EditText txtUsername, txtPassword;
+    EditText userEmailEditText, passwordEditText;
 
-    Button btnLogin;
+    Button loginButton;
     AlertDialogManager alert = new AlertDialogManager();
     SessionManager session;
 
     ProgressBar loginProgressBar;
 
+    FirebaseAuth firebaseAuth;
+
+    String userEmail;
+    String password;
+    RadioButton doctorRadioButton;
+    RadioButton patientRadioButton;
+    TextView signUpWidget;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-        System.out.println("Inside login activity");
-        //System.setProperty("http.keepAlive", "false");
+        setContentView(R.layout.activity_login);
 
         session = new SessionManager(getApplicationContext());
 
-        txtUsername = (EditText) findViewById(R.id.uname_login);
-        txtPassword = (EditText) findViewById(R.id.password_login);
-        RadioButton rd1 = (RadioButton) findViewById(R.id.doc_rd);
-        RadioButton rd2 = (RadioButton) findViewById(R.id.patient_rd);
+        userEmailEditText = (EditText) findViewById(R.id.user_email_edit_text);
+        passwordEditText = (EditText) findViewById(R.id.password_edit_text);
+        doctorRadioButton = (RadioButton) findViewById(R.id.doctor_radio_button);
+        patientRadioButton = (RadioButton) findViewById(R.id.patient_radio_button);
+        signUpWidget = (TextView) findViewById(R.id.sign_up_view);
 
         loginProgressBar = (ProgressBar) findViewById(R.id.login_progress_bar);
-
-        //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.login_toolbar);
         setActionBar(toolbar);
@@ -76,68 +65,124 @@ public class LoginActivity extends Activity {
             getActionBar().setTitle(getResources().getString(R.string.app_name));
         }
 
-        btnLogin = (Button) findViewById(R.id.login);
+        loginButton = (Button) findViewById(R.id.login);
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 loginProgressBar.setVisibility(View.VISIBLE);
-                txtPassword.setEnabled(false);
-                txtUsername.setEnabled(false);
+                passwordEditText.setEnabled(false);
+                userEmailEditText.setEnabled(false);
 
-                String username = txtUsername.getText().toString();
-                String password = txtPassword.getText().toString();
-                Bundle bundle = getIntent().getExtras();
-                RadioButton rd1 = (RadioButton) findViewById(R.id.doc_rd);
-                RadioButton rd2 = (RadioButton) findViewById(R.id.patient_rd);
+                userEmail = userEmailEditText.getText().toString();
+                password = passwordEditText.getText().toString();
 
-
-                LoginInfo loginInfo = new LoginInfo();
-
-                if (username.trim().length() > 0 && password.trim().length() > 0) {
-                    loginInfo.setUsername(username);
-                    loginInfo.setPassword(password);
-                    if (rd1.isChecked())
-                        new AsyncTaskLoginDoc().execute(loginInfo);
-                    else
-                        new AsyncTaskLoginPatient().execute(loginInfo);
-                } else {
-
-                    alert.showAlertDialog(LoginActivity.this, "Login failed..", "Please enter username and password", false);
-                }
+                if (doctorRadioButton.isChecked()){
+                    new DoctorAuthAsynTask().doInBackground();
+                }else if (patientRadioButton.isChecked()){
+                    new PatientAuthAsyncTask().doInBackground();
+                }else
+                    Toast.makeText(getApplicationContext(),"Kindly select role (Patient|Doctor)",Toast.LENGTH_SHORT).show();
 
             }
 
         });
+
+        signUpWidget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(LoginActivity.this, RegistrationActivity.class));
+            }
+        });
     }
 
-    public class AsyncTaskLoginDoc extends AsyncTask<LoginInfo, String, LoginInfo> {
+    public boolean isUserAuthenticated(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        return firebaseUser != null;
+    }
+
+    public boolean signUpUser(String userEmail,String userPassword){
+        firebaseAuth.createUserWithEmailAndPassword(userEmail,userPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        loginProgressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"RegistrationActivity Successful",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"RegistrationActivity failed",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        return firebaseAuth.getCurrentUser() != null;
+    }
+
+    public void signInUser(String userEmail, String password){
+        firebaseAuth.signInWithEmailAndPassword(userEmail,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        loginProgressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()){
+                            loginProgressBar.setVisibility(View.GONE);
+                            Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_SHORT).show();
+                            loginButton.setText("Login Successful");
+                        }else {
+                            loginProgressBar.setVisibility(View.GONE);
+                            Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
+                            loginButton.setText("Authentication Failed, retry...");
+
+                        }
+
+                    }
+                });
+        firebaseAuth.getCurrentUser();
+    }
+
+    public User getFirebaseUser(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null){
+            String name = firebaseUser.getDisplayName();
+            String email = firebaseUser.getEmail();
+            String uuid = firebaseUser.getUid();
+            Uri photoUri = firebaseUser.getPhotoUrl();
+
+            User user = new User();
+            user.setUserEmail(email);
+            user.setPatient(false);
+            user.setUserUuid(uuid);
+            user.setPhotoUri(photoUri.toString());
+
+            return user;
+
+        }else
+            return null;
+    }
+
+    public class DoctorAuthAsynTask extends AsyncTask<Void,Void,Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Authenticating...", Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        protected LoginInfo doInBackground(LoginInfo... params) {
+        protected Void doInBackground(Void... voids) {
+            signInUser(userEmail,password);
             return null;
         }
 
         @Override
-        protected void onPostExecute(LoginInfo L) {
-            super.onPostExecute(L);
-            Intent i = new Intent(getApplicationContext(), DoctorMainActivity.class); //ToDo doctor dashboard
-            startActivity(i);
-            finish();
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
         }
-
     }
 
-    public class AsyncTaskLoginPatient extends AsyncTask<LoginInfo, Void, LoginInfo> {
+    public class  PatientAuthAsyncTask extends AsyncTask<Void,Void,Void> {
 
         @Override
         protected void onPreExecute() {
@@ -145,20 +190,15 @@ public class LoginActivity extends Activity {
         }
 
         @Override
-        protected LoginInfo doInBackground(LoginInfo... params) {
-
+        protected Void doInBackground(Void... voids) {
+            signInUser(userEmail,password);
             return null;
         }
 
         @Override
-        protected void onPostExecute(LoginInfo L) {
-            super.onPostExecute(L);
-
-            Intent i = new Intent(getApplicationContext(), PatientMainActivity.class); //ToDo Patient dashboard
-            startActivity(i);
-            finish();
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
         }
-
     }
 
     public void gotoHome(View V) {
@@ -170,6 +210,8 @@ public class LoginActivity extends Activity {
         LoginActivity.this.finish();
         ;
     }
+
+
 
 }
 

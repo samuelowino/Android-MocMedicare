@@ -9,6 +9,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/reg_page_common_toolbar"
         android:background="@color/colorPrimary"
+        android:theme="@style/ToolbarTheme"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
@@ -87,16 +88,16 @@
         <EditText
             android:layout_width="150dp"
             android:layout_height="30dp"
-            android:inputType="phone"
+            android:inputType="textPassword"
             android:background="#ffff"
             android:ems="10"
             android:id="@+id/phone_no_edit_text"
-            android:hint="+1-XXX-XXX-XXXX"
+            android:hint="Enter Password"
             android:layout_alignTop="@+id/textView9"
             android:layout_alignStart="@+id/email" />
 
         <TextView
-            android:text="Contact Number"
+            android:text="Password"
             android:textSize="20dp"
             android:layout_width="160dp"
             android:layout_height="30dp"
@@ -196,7 +197,7 @@
             android:textColor="@color/colorPrimary" />
 
         <TextView
-            android:text="Email ID"
+            android:text="Email Address"
             android:textSize="20dp"
             android:layout_width="160dp"
             android:layout_height="30dp"
@@ -218,7 +219,7 @@
             android:textColor="@color/colorPrimary" />
 
         <Button
-            android:text="Next"
+            android:text="Submit"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:id="@+id/move_next_button"
@@ -230,13 +231,13 @@
             android:textColor="@color/white" />
 
         <Button
-            android:layout_width="50dp"
+            android:layout_width="32dp"
             android:id="@+id/date_of_birth_button"
             android:layout_above="@+id/email"
             android:layout_toEndOf="@+id/DOB"
-            android:layout_height="30dp"
+            android:layout_height="32dp"
             android:onClick="showDatePickerDialog"
-            android:background="@android:drawable/ic_input_add" />
+            android:background="@drawable/ic_action_calendar" />
 
     </RelativeLayout>
 

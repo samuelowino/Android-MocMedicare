@@ -35,7 +35,7 @@ public class HomeActivity extends Activity {
     }
 
     public void gotoRegister(View v) {
-        Intent intent = new Intent(HomeActivity.this, Registration.class);
+        Intent intent = new Intent(HomeActivity.this, RegistrationActivity.class);
         startActivity(intent);
     }
 

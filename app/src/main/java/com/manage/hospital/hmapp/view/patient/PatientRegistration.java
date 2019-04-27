@@ -128,7 +128,7 @@ public class PatientRegistration extends Activity {
         @Override
         protected PatientInfo doInBackground(PatientInfo... params) {
 
-            Log.e(getClass().getSimpleName(),"Asyn Patient Registration... doInBackground");
+            Log.e(getClass().getSimpleName(),"Asyn Patient RegistrationActivity... doInBackground");
 
             try {
 
