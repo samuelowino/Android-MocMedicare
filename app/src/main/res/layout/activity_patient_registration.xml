@@ -84,7 +84,7 @@
             android:id="@+id/imageView2"
             android:layout_width="75dp"
             android:layout_above="@+id/textView15"
-            android:layout_toStartOf="@+id/button6" />
+            android:layout_toStartOf="@+id/back_button" />
 
         <TextView
             android:text="Age"
@@ -155,7 +155,7 @@
             android:text="Back"
             android:layout_width="100dp"
             android:textSize="15dp"
-            android:id="@+id/button6"
+            android:id="@+id/back_button"
             android:background="@drawable/button_background_curved"
             android:onClick="finishPatientRegistration"
             android:layout_height="40dp"
@@ -168,15 +168,15 @@
             android:text="Sign In"
             android:layout_width="100dp"
             android:textSize="15dp"
-            android:id="@+id/button5"
+            android:id="@+id/submit_button"
             android:background="@drawable/button_background_curved"
             android:onClick="submitPatientDataInfo"
             android:layout_marginStart="21dp"
             android:layout_height="40dp"
             android:textColor="@color/white"
-            android:layout_alignBottom="@+id/button6"
-            android:layout_alignStart="@+id/password_patient"
-            android:layout_alignTop="@+id/button6" />
+            android:layout_alignBottom="@+id/back_button"
+            android:layout_alignStart="@+id/password_patient_edit_text"
+            android:layout_alignTop="@+id/back_button" />
 
         <EditText
             android:visibility="invisible"

@@ -36,6 +36,20 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_ADDRESS = "address";
     }
 
+    public static class DoctorEntry implements  BaseColumns {
+        public static final String TABLE_NAME = "doctor";
+        public static final String COLUMN_NAME_UUID = "uuid";
+        public static final String COLUMN_NAME_FIRST_NAME = "first_name";
+        public static final String COLUMN_NAME_LAST_NAME = "last_name";
+        public static final String COLUMN_NAME_LICENSE = "licence";
+        public static final String COLUMN_NAME_SPECIALIZATION = "specialization";
+        public static final String COLUMN_NAME_DOB = "dob";
+        public static final String COLUMN_NAME_GENDER = "gender";
+        public static final String COLUMN_NAME_EMAIL = "email";
+        public static final String COLUMN_NAME_CONTACT = "contact";
+        public static final String COLUMN_NAME_ADDRESS = "address";
+    }
+
     public static final String SQL_CREATE_USER_TABLE =
             "CREATE TABLE " + UserEntry.TABLE_NAME + " (" +
                     UserEntry.COLUMN_NAME_UUID + " TEXT," +
@@ -60,19 +74,26 @@ public class DatabaseContract {
                     PatientEntry.COLUMN_NAME_CONTACT + " TEXT," +
                     PatientEntry.COLUMN_NAME_ADDRESS + " TEXT)";
 
+    public static final String SQL_CREATE_DOCTOR_TABLE =
+            "CREATE TABLE " + DoctorEntry.TABLE_NAME + " (" +
+                    DoctorEntry.COLUMN_NAME_UUID + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_FIRST_NAME + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_LAST_NAME + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_LICENSE + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_SPECIALIZATION + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_DOB + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_GENDER + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_EMAIL+ " TEXT," +
+                    DoctorEntry.COLUMN_NAME_CONTACT + " TEXT," +
+                    DoctorEntry.COLUMN_NAME_ADDRESS + " TEXT)";
+
     public static final String SQL_DELETE_USER_TABLE =
             "DROP TABLE IF EXISTS " + UserEntry.TABLE_NAME;
 
     public static final String SQL_DELETE_PATIENT_TABLE =
             "DROP TABLE IF EXISTS " + PatientEntry.TABLE_NAME;
 
-
-
-
-
-
-
-
-
+    public static final String SQL_DELETE_DOCTOR_TABLE =
+            "DROP TABLE IF EXISTS " + DoctorEntry.TABLE_NAME;
 
 }

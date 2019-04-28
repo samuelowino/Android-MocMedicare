@@ -33,7 +33,7 @@ import com.manage.hospital.hmapp.R;
 import com.manage.hospital.hmapp.database.contracts.DatabaseContract;
 import com.manage.hospital.hmapp.database.helpers.DaktariDatabaseOpenHelper;
 import com.manage.hospital.hmapp.model.User;
-import com.manage.hospital.hmapp.view.doctor.DoctorRegistration;
+import com.manage.hospital.hmapp.view.doctor.DoctorRegistrationActivity;
 import com.manage.hospital.hmapp.view.patient.PatientRegistrationActivity;
 
 public class RegistrationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -65,7 +65,7 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_page_common);
+        setContentView(R.layout.activity_register_page_common);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.reg_page_common_toolbar);
         setSupportActionBar(toolbar);
@@ -194,7 +194,14 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
                                 intent.putExtra("gender",genderEditText.getText().toString());
                                 startActivity(intent);
                             }else if (user.getRole().equalsIgnoreCase("doctor")){
-                                Intent intent = new Intent(RegistrationActivity.this, DoctorRegistration.class);
+                                Intent intent = new Intent(RegistrationActivity.this, DoctorRegistrationActivity.class);
+                                intent.putExtra("first_name",user.getFirstName());
+                                intent.putExtra("last_name",user.getLastName());
+                                intent.putExtra("uuid",user.getUuid());
+                                intent.putExtra("dobEditText", dobEditText.getText().toString());
+                                intent.putExtra("email",user.getUserEmail());
+                                intent.putExtra("contact","07xxxx");
+                                intent.putExtra("gender",genderEditText.getText().toString());
                                 startActivity(intent);
                             }
 

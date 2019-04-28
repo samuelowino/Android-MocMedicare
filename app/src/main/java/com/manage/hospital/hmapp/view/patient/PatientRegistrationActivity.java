@@ -59,7 +59,6 @@ public class PatientRegistrationActivity extends Activity {
         ageEditText = (EditText) findViewById(R.id.age);
         homeAddressEditText = (EditText) findViewById(R.id.home);
         userNamePatient = (EditText) findViewById(R.id.uname_patient);
-        passwordEditText = (EditText) findViewById(R.id.password_patient);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.patient_reg_toolbar);
         setActionBar(toolbar);

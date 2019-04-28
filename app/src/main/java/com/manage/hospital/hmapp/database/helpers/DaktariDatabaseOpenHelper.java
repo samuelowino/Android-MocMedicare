@@ -12,20 +12,22 @@ public class DaktariDatabaseOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public DaktariDatabaseOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DatabaseContract.SQL_CREATE_USER_TABLE);
         db.execSQL(DatabaseContract.SQL_CREATE_PATIENT_TABLE);
+        db.execSQL(DatabaseContract.SQL_CREATE_DOCTOR_TABLE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DatabaseContract.SQL_DELETE_USER_TABLE);
-        db.execSQL(DatabaseContract.SQL_DELETE_PATIENT_TABLE);
-        onCreate(db);
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+        database.execSQL(DatabaseContract.SQL_DELETE_USER_TABLE);
+        database.execSQL(DatabaseContract.SQL_DELETE_PATIENT_TABLE);
+        database.execSQL(DatabaseContract.SQL_DELETE_DOCTOR_TABLE);
+        onCreate(database);
     }
 
     @Override

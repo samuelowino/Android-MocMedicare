@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="doctor_specializations_list">
+        <item>GeneralPhysician</item>
+        <item>Cardiology</item>
+        <item>Neurology</item>
+        <item>Oncology</item>
+        <item>AllergyImmunology</item>
+        <item>CriticalCare</item>
+        <item>Psychiatry</item>
+        <item>Urology</item>
+    </string-array>
+</resources>
