@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,7 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.manage.hospital.hmapp.R;
-import com.manage.hospital.hmapp.database.contracts.UserContract;
+import com.manage.hospital.hmapp.database.contracts.DatabaseContract;
 import com.manage.hospital.hmapp.database.helpers.DaktariDatabaseOpenHelper;
 import com.manage.hospital.hmapp.model.User;
 import com.manage.hospital.hmapp.view.doctor.DoctorMainActivity;
@@ -122,12 +121,12 @@ public class LoginActivity extends Activity {
 
     public User getCachedUser() {
         User user = new User();
-        Cursor cursor = daktariDatabase.rawQuery("SELECT * FROM " + UserContract.UserEntry.TABLE_NAME, null);
+        Cursor cursor = daktariDatabase.rawQuery("SELECT * FROM " + DatabaseContract.UserEntry.TABLE_NAME, null);
         while (cursor.moveToNext()) {
-            user.setUserEmail(cursor.getString(cursor.getColumnIndexOrThrow(UserContract.UserEntry.COLUMN_NAME_EMAIL)));
-            user.setUserUuid(cursor.getString(cursor.getColumnIndexOrThrow(UserContract.UserEntry.COLUMN_NAME_UUID)));
-            user.setRole(cursor.getString(cursor.getColumnIndexOrThrow(UserContract.UserEntry.COLUMN_NAME_ROLE)));
-            user.setUserPassword(cursor.getString(cursor.getColumnIndexOrThrow(UserContract.UserEntry.COLUMN_NAME_HASHED_PASSWORD)));
+            user.setUserEmail(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserEntry.COLUMN_NAME_EMAIL)));
+            user.setUserUuid(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserEntry.COLUMN_NAME_UUID)));
+            user.setRole(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserEntry.COLUMN_NAME_ROLE)));
+            user.setUserPassword(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserEntry.COLUMN_NAME_HASHED_PASSWORD)));
         }
 
         cursor.close();

@@ -3,9 +3,8 @@ package com.manage.hospital.hmapp.database.helpers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.annotation.Nullable;
 
-import com.manage.hospital.hmapp.database.contracts.UserContract;
+import com.manage.hospital.hmapp.database.contracts.DatabaseContract;
 
 public class DaktariDatabaseOpenHelper extends SQLiteOpenHelper {
 
@@ -18,12 +17,14 @@ public class DaktariDatabaseOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(UserContract.SQL_CREATE_USER_TABLE);
+        db.execSQL(DatabaseContract.SQL_CREATE_USER_TABLE);
+        db.execSQL(DatabaseContract.SQL_CREATE_PATIENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(UserContract.SQL_DELETE_USER_TABLE);
+        db.execSQL(DatabaseContract.SQL_DELETE_USER_TABLE);
+        db.execSQL(DatabaseContract.SQL_DELETE_PATIENT_TABLE);
         onCreate(db);
     }
 

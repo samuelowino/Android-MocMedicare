@@ -383,7 +383,6 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         protected ArrayList doInBackground(Integer... params) {
             try {
 
-
                 String Url = ConfigConstant.BASE_URL + ConfigConstant.PATIENT_EMERGENCY + params[0];
                 HttpGet get = new HttpGet(Url);
                 HttpClient httpClient = new DefaultHttpClient();

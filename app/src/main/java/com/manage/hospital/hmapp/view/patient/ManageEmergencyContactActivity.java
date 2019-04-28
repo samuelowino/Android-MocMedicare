@@ -166,7 +166,7 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
             } else if (client.getId().equals(updateECRestCallId)) {
                 if (client.getResponseCode() == 200) {
                     JSONObject body = new JSONObject(client.getResponseBody());
-                    //this will be just like post except that we already have the dependent id;
+                    //this will be just like post except that weightEditText already have the dependent id;
                     mEmergencyContact = new EmergencyContact(mEmergencyContact.getId(), mEmergencyContactUnsaved.getFirstname(),
                             mEmergencyContactUnsaved.getLastname(), mEmergencyContactUnsaved.getContact(),
                             mEmergencyContactUnsaved.getEmailId(), mEmergencyContactUnsaved.getAddress(),

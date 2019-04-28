@@ -129,7 +129,7 @@ public class ManageAppointmentActivity extends Activity implements RestCallbackH
             } else if (client.getId().equals(updateAPTRestCallId)) {
                 if (client.getResponseCode() == 200) {
                     JSONObject body = new JSONObject(client.getResponseBody());
-                    //this will be just like post except that we already have the appointment id;
+                    //this will be just like post except that weightEditText already have the appointment id;
                     mAppointment = new Appointment(mAppointment.getId(), mAppointmentUnsaved.getDescription(),
                             mAppointmentUnsaved.getAppointmentDate(), mAppointmentUnsaved.getAppointmentStatus(),
                             mAppointmentUnsaved.getPatientId(), mAppointmentUnsaved.getDoctorId());
